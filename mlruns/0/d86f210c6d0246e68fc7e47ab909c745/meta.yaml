@@ -1,0 +1,15 @@
+artifact_uri: file:C:/Users/anggun/Documents/GitHub/Membangun_model/mlruns/0/d86f210c6d0246e68fc7e47ab909c745/artifacts
+end_time: 1780193295283
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d86f210c6d0246e68fc7e47ab909c745
+run_name: welcoming-jay-709
+run_uuid: d86f210c6d0246e68fc7e47ab909c745
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780193290061
+status: 3
+tags: []
+user_id: anggun

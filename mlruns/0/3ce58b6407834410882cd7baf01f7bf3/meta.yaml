@@ -1,0 +1,15 @@
+artifact_uri: file:C:/Users/anggun/Documents/GitHub/Membangun_model/mlruns/0/3ce58b6407834410882cd7baf01f7bf3/artifacts
+end_time: 1780192327725
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3ce58b6407834410882cd7baf01f7bf3
+run_name: ambitious-bee-909
+run_uuid: 3ce58b6407834410882cd7baf01f7bf3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1780192320175
+status: 3
+tags: []
+user_id: anggun
