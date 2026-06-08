@@ -1,21 +1,9 @@
-import os
 import time
-import pandas as pd
-import mlflow
-import mlflow.sklearn
+import requests
 
-from prometheus_client import start_http_server, Counter, Gauge
-
-# Izinkan MLflow file store
-os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
-
-# Tracking ke folder mlruns lokal
-mlflow.set_tracking_uri("file:./mlruns")
-
-# Load model
-model = mlflow.sklearn.load_model(
-    "runs:/74687eaf673d4571a68fc6606a1311c0/model"
-)
+from prometheus_client import start_http_server
+from prometheus_client import Counter
+from prometheus_client import Gauge
 
 # Metrics
 request_count = Counter(
@@ -41,22 +29,34 @@ if __name__ == "__main__":
 
     while True:
 
-        data = pd.DataFrame([{
-            "Pclass": 3,
-            "Age": 22,
-            "SibSp": 1,
-            "Parch": 0,
-            "Fare": 7.25,
-            "Sex_male": True,
-            "Embarked_Q": False,
-            "Embarked_S": True
-        }])
+        payload = {
+            "dataframe_records": [
+                {
+                    "Pclass": 3,
+                    "Age": 22,
+                    "SibSp": 1,
+                    "Parch": 0,
+                    "Fare": 7.25,
+                    "Sex_male": True,
+                    "Embarked_Q": False,
+                    "Embarked_S": True
+                }
+            ]
+        }
 
         start_time = time.time()
 
-        pred = model.predict(data)[0]
+        response = requests.post(
+            "http://127.0.0.1:5001/invocations",
+            json=payload,
+            headers={
+                "Content-Type": "application/json"
+            }
+        )
 
         latency = time.time() - start_time
+
+        pred = response.json()["predictions"][0]
 
         request_count.inc()
         prediction_latency.set(latency)
